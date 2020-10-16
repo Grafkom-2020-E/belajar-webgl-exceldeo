@@ -11,7 +11,7 @@ function main() {
         -0.5, -0.5,       // Titik A
         0.5, -0.5,        // Titik B
         0.5, 0.5,         // Titik C
-        -0.5, -0.5        // Titik A
+        -0.5, 0.5,         // Titik C
       ];
 
     var vertexBuffer = gl.createBuffer();
@@ -64,9 +64,9 @@ function main() {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // variable pertama note
-    var primitive = gl.LINE_STRIP;
+    var primitive = gl.TRIANGLE_FAN;
     var offset = 0;
-    var nVertex = 6;
+    var nVertex = 4;
     gl.drawArrays(primitive, offset, nVertex);
     // gl.drawArrays(gl.POINTS, 0, 1); 
 }
