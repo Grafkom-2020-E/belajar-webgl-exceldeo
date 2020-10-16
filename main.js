@@ -8,15 +8,16 @@ function main() {
     // Titik C (0.5 , 0.5)
 
     var vertices = [
-        -0.5 , -0.5,
-        0.5, -0.5, 
-        0.5 , 0.5
-    ];
+        -0.5, -0.5,       // Titik A
+        0.5, -0.5,        // Titik B
+        0.5, 0.5,         // Titik C
+        -0.5, -0.5        // Titik A
+      ];
 
     var vertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER, null); //kenapa itu null karena kalau sudah tidak di pakai di null kan
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);//kenapa itu null karena kalau sudah tidak di pakai di null kan
 
     var vertexShaderSource = document.getElementById("vertexShaderSource").text;
     var fragmentShaderSource = document.getElementById("fragmentShaderSource").text;
@@ -63,9 +64,9 @@ function main() {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // variable pertama note
-    var.primitive = gl.POINTS;
+    var primitive = gl.LINE_STRIP;
     var offset = 0;
-    var nVertex = 1;
-    // gl.drawArrays(primitive, offset, nVertex);
-    gl.drawArrays(gl.POINTS, 0, 1); 
+    var nVertex = 6;
+    gl.drawArrays(primitive, offset, nVertex);
+    // gl.drawArrays(gl.POINTS, 0, 1); 
 }
