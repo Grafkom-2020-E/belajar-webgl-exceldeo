@@ -91,10 +91,27 @@ function main() {
   
     var uD = gl.getUniformLocation(shaderProgram, 'u_d');
     var d = [0.5, 0.5];
+
+    var freeze = false;
+    function onMouseClick(event) {
+      freeze = !freeze; // kita negasikan nilai freeze
+    }
+    document.addEventListener('click', onMouseClick);
+    function onKeyDown(event) {
+      if(event.keyCode == 32) freeze = true;
+    }
+    function onKeyUp(event) {
+      if(event.keyCode == 32) freeze = false;
+    }
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('keyup', onKeyUp);
     
     function render() {
-      d[0] -= 0.001;
-      d[1] -= 0.001;
+      if (!freeze) {
+        // jika freeze == false, lakukan inkrementasi dx dan dy
+        d[0] -= 0.001;
+        d[1] -= 0.001;
+      }
       gl.uniform2fv(uD, d);
       gl.clearColor(0.0, 0.0, 0.0, 1.0);
       gl.clear(gl.COLOR_BUFFER_BIT);
